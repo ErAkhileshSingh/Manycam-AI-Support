@@ -1,8 +1,6 @@
 import os
 import re
-
 DATA_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "data"))
-
 def load_documents():
     """Reads all markdown files in data/ and splits them into searchable chunks (sections)."""
     documents = []
@@ -46,7 +44,6 @@ def load_documents():
                     print(f"Error reading {file_path}: {e}")
                     
     return documents
-
 def search_knowledge_base(query, limit=5):
     """Searches the document chunks using a simple keyword overlap scoring algorithm."""
     if not query:
@@ -82,7 +79,6 @@ def search_knowledge_base(query, limit=5):
     # Sort by score descending
     results.sort(key=lambda x: x['score'], reverse=True)
     return results[:limit]
-
 def get_faqs_list():
     """Parses faqs.md to return a list of FAQ questions and answers for display."""
     faqs = []

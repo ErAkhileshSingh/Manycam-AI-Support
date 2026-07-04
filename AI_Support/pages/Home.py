@@ -1,5 +1,4 @@
 import streamlit as st
-
 # Injecting the styles (global but just in case we call it to ensure alignment)
 # Title banner
 st.markdown("""
@@ -8,12 +7,9 @@ st.markdown("""
     <p>Troubleshoot motorized PTZ Cameras & ManyCam software instantly using AI</p>
 </div>
 """, unsafe_allow_html=True)
-
 st.markdown("### 👋 Welcome!")
 st.write("How can I help you today? Select one of our automated diagnostic pathways or start a chat with our virtual engineer.")
-
 col1, col2 = st.columns([1.1, 0.9], gap="large")
-
 with col1:
     # Card 1: Chat with AI
     st.markdown("""
@@ -46,9 +42,7 @@ with col1:
                 st.switch_page("pages/AI_Assistant.py")
             else:
                 st.warning("Please type an issue first.")
-
     st.markdown("<div style='margin-top: 1.5rem;'></div>", unsafe_allow_html=True)
-
     # Card 2: Guided Troubleshooter
     st.markdown("""
     <div class="custom-card">
@@ -75,7 +69,6 @@ with col1:
             st.session_state.troubleshoot_step = 1
             st.session_state.troubleshoot_answers = {}
             st.switch_page("pages/AI_Assistant.py")
-
 with col2:
     # Card 3: Camera Diagnosis
     st.markdown("""
@@ -93,7 +86,6 @@ with col2:
                 st.switch_page("pages/Camera_Diagnosis.py")
             else:
                 st.warning("Please enter an IP address.")
-
     # Card 4: Quick Uploads
     st.markdown("""
     <div class="custom-card">
@@ -109,7 +101,6 @@ with col2:
     with col_u2:
         if st.button("📄 Upload Log File", use_container_width=True):
             st.switch_page("pages/Log_Analyzer.py")
-
     # Card 5: Recent FAQs
     st.markdown("""
     <div class="custom-card">

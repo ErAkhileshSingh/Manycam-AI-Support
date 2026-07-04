@@ -3,12 +3,9 @@ import time
 import io
 from PIL import Image, ImageDraw
 from utils.vision import analyze_screenshot
-
 st.title("📷 Screenshot Analyzer")
 st.write("Upload an error screenshot (e.g., from ManyCam UI or Windows Device Manager) to run OCR scanning for error warnings.")
-
 col_upload, col_results = st.columns([1, 1.2], gap="large")
-
 # Utility function to generate mock images on the fly for testing
 def generate_mock_image(theme="no_camera"):
     # Create image canvas
@@ -39,7 +36,6 @@ def generate_mock_image(theme="no_camera"):
             return self.data
         
     return MockUploadedFile(f"{theme}_error_screenshot.png", img_byte_arr)
-
 with col_upload:
     st.subheader("Upload Screenshot")
     uploaded_image = st.file_uploader("Upload error image:", type=["png", "jpg", "jpeg"])
@@ -52,7 +48,6 @@ with col_upload:
         use_no_cam_demo = st.button("🔌 No Camera Found", use_container_width=True)
     with col_demo2:
         use_black_screen_demo = st.button("⬛ Black Screen", use_container_width=True)
-
 with col_results:
     st.subheader("AI Vision Diagnostics")
     

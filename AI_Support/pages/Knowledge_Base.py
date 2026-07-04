@@ -1,21 +1,16 @@
 import streamlit as st
 from utils.rag import search_knowledge_base, load_documents
-
 st.title("📚 Knowledge Base")
 st.write("Search user manuals, setup guides, and troubleshooting procedures for PTZ Cameras and ManyCam.")
-
 # Fetch pre-filled search query from FAQ redirect if exists
 search_query = st.text_input(
     "Search Documentation:", 
     value=st.session_state.kb_search_query, 
     placeholder="e.g. RTSP setup, black screen, presets..."
 )
-
 # Clear FAQ search state after using it once
 st.session_state.kb_search_query = ""
-
 col_search, col_result = st.columns([1, 1.5], gap="large")
-
 with col_search:
     st.subheader("Articles")
     
@@ -26,7 +21,6 @@ with col_search:
     else:
         results = load_documents()
         st.caption("Browse all available documentation sections:")
-
     if not results:
         st.info("No matching articles found. Try using keywords like 'PTZ', 'RTSP', 'driver', or 'black'.")
     else:
@@ -43,7 +37,6 @@ with col_search:
         if "selected_doc_index" not in st.session_state or st.session_state.selected_doc_index >= len(results):
             st.session_state.selected_doc_index = 0
             st.session_state.selected_doc_list = results
-
 with col_result:
     st.subheader("Reading Pane")
     

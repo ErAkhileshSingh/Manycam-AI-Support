@@ -1,6 +1,5 @@
 import os
 from PIL import Image
-
 def analyze_screenshot(image_file):
     """
     Analyzes an uploaded screenshot. Opens the image using PIL, computes basic

@@ -1,24 +1,20 @@
 import streamlit as st
 import time
 from utils.rag import search_knowledge_base
-
 # Add page navigation helper for reset
 def reset_troubleshooter():
     st.session_state.troubleshooting_issue = None
     st.session_state.assistant_mode = "chat"
     st.session_state.troubleshoot_step = 1
     st.session_state.troubleshoot_answers = {}
-
 # Page Title
 st.title("🤖 AI Support Assistant")
-
 # Navigation header
 col_h1, col_h2 = st.columns([2.5, 1.5])
 with col_h2:
     if st.button("Reset / Start Live Chat", type="secondary", use_container_width=True):
         reset_troubleshooter()
         st.rerun()
-
 # ----------------- MODE 1: LIVE CHAT -----------------
 if st.session_state.assistant_mode == "chat":
     st.write("Ask our AI assistant any questions about setting up ManyCam, connecting network PTZ cameras, configuring presets, or audio issues.")
@@ -70,7 +66,6 @@ if st.session_state.assistant_mode == "chat":
         # Append AI response
         st.session_state.chat_history.append({"role": "assistant", "content": ai_reply})
         st.rerun()
-
 # ----------------- MODE 2: GUIDED QUESTIONNAIRE -----------------
 elif st.session_state.assistant_mode == "questionnaire":
     issue = st.session_state.troubleshooting_issue or "Camera Issue"
@@ -149,7 +144,6 @@ elif st.session_state.assistant_mode == "questionnaire":
             if st.button("Diagnose Issue 🧠", type="primary", use_container_width=True):
                 st.session_state.assistant_mode = "processing"
                 st.rerun()
-
 # ----------------- MODE 3: TIMED PROCESSING SCREEN -----------------
 elif st.session_state.assistant_mode == "processing":
     st.subheader("AI Diagnostics in progress...")
@@ -174,7 +168,6 @@ elif st.session_state.assistant_mode == "processing":
         
     st.session_state.assistant_mode = "report"
     st.rerun()
-
 # ----------------- MODE 4: DIAGNOSTIC SOLUTION REPORT -----------------
 elif st.session_state.assistant_mode == "report":
     answers = st.session_state.troubleshoot_answers

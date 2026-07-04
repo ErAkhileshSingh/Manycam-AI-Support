@@ -1,5 +1,4 @@
 import re
-
 def parse_log_file(file_content_str):
     """
     Parses log file contents. Looks for ERROR, WARNING, and CRITICAL errors,

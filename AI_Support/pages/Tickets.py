@@ -1,11 +1,8 @@
 import streamlit as st
 import time
-
 st.title("🎫 Support Tickets")
 st.write("Manage your ongoing support tickets or file a new query directly to our support engineers.")
-
 col_list, col_create = st.columns([1.3, 0.8], gap="large")
-
 with col_list:
     st.subheader("Your Support Tickets")
     
@@ -45,7 +42,6 @@ with col_list:
                 elif ticket["status"] == "Open":
                     st.markdown("**🧑‍💻 System Notification:**")
                     st.info("Ticket created. A ManyCam support engineer has been assigned and will reply within 2 hours. Keep ManyCam running to allow remote diagnostics if required.")
-
 with col_create:
     st.subheader("Open a New Ticket")
     

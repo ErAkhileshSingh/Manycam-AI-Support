@@ -1,5 +1,4 @@
 import streamlit as st
-
 # MUST be the first Streamlit command
 st.set_page_config(
     page_title="Smart Camera Support Portal",
@@ -7,7 +6,6 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded"
 )
-
 # Initialize Session States
 if "troubleshooting_issue" not in st.session_state:
     st.session_state.troubleshooting_issue = None
@@ -31,7 +29,6 @@ if "tickets" not in st.session_state:
         {"id": "TCK-8902", "subject": "PTZ Preset Position Drift", "status": "Resolved", "date": "2026-06-28", "category": "PTZ Not Moving"},
         {"id": "TCK-9411", "subject": "ManyCam audio echo on Zoom call", "status": "Open", "date": "2026-07-03", "category": "Audio Issue"}
     ]
-
 # Inject premium custom CSS styles globally
 def inject_global_css():
     st.markdown("""
@@ -42,7 +39,6 @@ def inject_global_css():
         html, body, [class*="css"] {
             font-family: 'Inter', sans-serif;
         }
-
         /* Glassmorphism Main Banner Header */
         .main-header {
             background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
@@ -71,7 +67,6 @@ def inject_global_css():
             margin-top: 0.5rem;
             margin-bottom: 0;
         }
-
         /* Custom Cards styling */
         .custom-card {
             background-color: #151c2c;
@@ -87,7 +82,6 @@ def inject_global_css():
             border-color: #4f46e5;
             transform: translateY(-2px);
         }
-
         .custom-card-title {
             font-size: 1.25rem;
             font-weight: 600;
@@ -97,7 +91,6 @@ def inject_global_css():
             align-items: center;
             gap: 8px;
         }
-
         /* Chat bubbles stylings */
         .chat-bubble {
             padding: 1rem 1.25rem;
@@ -124,7 +117,6 @@ def inject_global_css():
             margin-left: auto;
             box-shadow: 0 4px 10px rgba(99, 102, 241, 0.2);
         }
-
         /* Diagnostic checklist styles */
         .diag-item {
             display: flex;
@@ -145,7 +137,6 @@ def inject_global_css():
             border: 1px solid rgba(239, 68, 68, 0.2);
             color: #ef4444;
         }
-
         /* Sidebar profile styling */
         .sidebar-brand {
             padding: 1rem 0;
@@ -153,14 +144,12 @@ def inject_global_css():
             border-bottom: 1px solid #1e293b;
             margin-bottom: 1rem;
         }
-
         .sidebar-brand-name {
             font-size: 1.15rem;
             font-weight: 700;
             color: #f8fafc;
             letter-spacing: -0.025em;
         }
-
         /* Custom buttons */
         .stButton>button {
             border-radius: 8px !important;
@@ -173,9 +162,7 @@ def inject_global_css():
         }
     </style>
     """, unsafe_allow_html=True)
-
 inject_global_css()
-
 # Configure Sidebar Brand
 with st.sidebar:
     st.markdown("""
@@ -184,7 +171,6 @@ with st.sidebar:
         <div style="font-size: 0.8rem; color: #64748b; margin-top: 2px;">v1.0.0 (Prototype)</div>
     </div>
     """, unsafe_allow_html=True)
-
 # Define individual Page objects
 # Streamlit will resolve these pages dynamically
 home_page = st.Page("pages/Home.py", title="Home", icon="🏠", default=True)
@@ -195,13 +181,11 @@ screenshot_page = st.Page("pages/Screenshot_Analyzer.py", title="Upload Screensh
 diagnosis_page = st.Page("pages/Camera_Diagnosis.py", title="Camera Diagnosis", icon="🎥")
 tickets_page = st.Page("pages/Tickets.py", title="My Tickets", icon="🎫")
 settings_page = st.Page("pages/Settings.py", title="Settings", icon="⚙")
-
 # Build navigation menu structure
 pg = st.navigation({
     "Navigation": [home_page, ai_assistant_page, kb_page, tickets_page],
     "Tools": [diagnosis_page, logs_page, screenshot_page],
     "Configure": [settings_page]
 })
-
 # Run application router
 pg.run()

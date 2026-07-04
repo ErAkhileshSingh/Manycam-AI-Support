@@ -1,7 +1,6 @@
 import subprocess
 import socket
 import platform
-
 def check_network_ping(ip):
     """Performs a single network ping to verify if the camera IP is reachable."""
     if not ip or ip.strip() == "":
@@ -19,7 +18,6 @@ def check_network_ping(ip):
         return res.returncode == 0
     except Exception:
         return False
-
 def check_port_open(ip, port):
     """Attempts to establish a socket connection to checking if a port is open."""
     try:
@@ -28,7 +26,6 @@ def check_port_open(ip, port):
             return s.connect_ex((ip, int(port))) == 0
     except Exception:
         return False
-
 def run_camera_diagnostics(ip, username="", password=""):
     """
     Diagnoses PTZ Camera Health by running network pings and port scans.
@@ -56,7 +53,6 @@ def run_camera_diagnostics(ip, username="", password=""):
             "firmware_outdated": False,
             "recommendation": "Please enter a valid IP address and ensure your PC is connected to the same network."
         }
-
     # Perform real ping
     is_reachable = check_network_ping(ip)
     
